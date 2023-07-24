@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using Xamarin.Forms;
 
 namespace little_face.ViewModels
@@ -97,14 +98,14 @@ namespace little_face.ViewModels
                 {
                     WelcomeMessage  = "Inicio de sesión exitoso ¡Bienvenido! :" + Username;
                     MessageColor = Color.Green;
-                    //ShowMessage = true;
+                    Thread.Sleep(2000);
                     await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
                 }
                 else
                 {
                     ShowMessage = true;            
                     MessageColor = Color.Red;
-                    WelcomeMessage = "Credenciasles Invalidas!!!";
+                    WelcomeMessage = "Credenciales Invalidas!!!";
                 }
                 
             }
