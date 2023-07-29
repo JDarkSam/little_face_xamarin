@@ -1,5 +1,4 @@
-﻿using little_face.Services;
-using little_face.Views;
+﻿using little_face.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,8 +11,7 @@ namespace little_face
         public App()
         {
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
+            Startup.Initialize();
             MainPage = new AppShell();
         }
 

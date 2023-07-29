@@ -1,5 +1,4 @@
 ﻿using little_face.Models;
-using little_face.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +9,7 @@ namespace little_face.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+
 
         bool isBusy = false;
         public bool IsBusy
