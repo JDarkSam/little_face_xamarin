@@ -1,10 +1,9 @@
-﻿using little_face;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Reflection;
 using Xamarin.Forms;
 
-namespace little_face.Helpers
+namespace little_face.Utilities
 {
     public class ViewModelLocator
     {

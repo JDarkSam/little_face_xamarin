@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:little_face.ViewModels"
              x:DataType="viewModels:ClientsViewModel"
-             xmlns:helpers="clr-namespace:little_face.Helpers"
-             helpers:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:utilitiy="clr-namespace:little_face.Utilities"
+             utilitiy:ViewModelLocator.AutoWireViewModel="True"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="little_face.Views.ClientsPage">
              
