@@ -14,8 +14,7 @@ namespace little_face.Views
     {
         public LoginPage()
         {
-            InitializeComponent();
-            //this.BindingContext = new LoginViewModel();
+            InitializeComponent();          
         }
     }
 }

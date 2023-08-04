@@ -5,8 +5,14 @@
              x:DataType="viewModels:ClientsViewModel"
              xmlns:utilitiy="clr-namespace:little_face.Utilities"
              utilitiy:ViewModelLocator.AutoWireViewModel="True"
+             
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="little_face.Views.ClientsPage">
-             
+
+    <ContentPage.Content>
+        <CollectionView ItemsSource="{Binding Clients}">
+            
+        </CollectionView>
+    </ContentPage.Content>
 
 </ContentPage>

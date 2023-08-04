@@ -1,4 +1,6 @@
-﻿using little_face.Views;
+﻿using little_face.Data.API;
+using little_face.Services;
+using little_face.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -85,8 +87,9 @@ namespace little_face.ViewModels
 
         public Command LoginCommand { get; }
 
+        
         public LoginViewModel()
-        {
+        {           
             LoginCommand = new Command(OnLoginClicked);
         }
 

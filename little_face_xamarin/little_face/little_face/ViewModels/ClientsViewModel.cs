@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace little_face.ViewModels
 {
@@ -15,7 +16,7 @@ namespace little_face.ViewModels
             _clientService = clientService;
         }
 
-        //public ObservableCollection<Client> Clients { get; set; } = new ObservableRangeCollection<Client>();
+        public ObservableCollection<Client> Clients { get; set; } = new ObservableRangeCollection<Client>();
 
     }
 }

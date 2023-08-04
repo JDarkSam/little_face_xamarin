@@ -11,7 +11,7 @@ namespace little_face.Data.API
     public interface IClientApi
     {
         [Get("/Clients")]
-        Task<List<Client>> GetClientsAsync();
+        Task<IEnumerable<Client>> GetClientsAsync();
 
     }
 }

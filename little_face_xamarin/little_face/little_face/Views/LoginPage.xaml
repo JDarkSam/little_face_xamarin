@@ -5,6 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:little_face;assembly=little_face"
              xmlns:viewModels="clr-namespace:little_face.ViewModels"
+             xmlns:utilitiy="clr-namespace:little_face.Utilities"
+             utilitiy:ViewModelLocator.AutoWireViewModel="True"
+             x:DataType="viewModels:LoginViewModel"
              mc:Ignorable="d"
              x:Class="little_face.Views.LoginPage"
              Shell.NavBarIsVisible="False">
