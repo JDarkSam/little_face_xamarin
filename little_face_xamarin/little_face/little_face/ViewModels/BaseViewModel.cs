@@ -11,7 +11,6 @@ namespace little_face.ViewModels
     public class BaseViewModel : ObservableObject
     {
 
-
         bool isBusy = false;
         public bool IsBusy
         {

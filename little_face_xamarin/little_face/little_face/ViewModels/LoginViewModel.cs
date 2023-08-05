@@ -101,8 +101,9 @@ namespace little_face.ViewModels
                 {
                     WelcomeMessage  = "Inicio de sesión exitoso ¡Bienvenido! :" + Username;
                     MessageColor = Color.Green;
-                    Thread.Sleep(2000);
-                    await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+                    Thread.Sleep(2000);             
+                    await Shell.Current.GoToAsync($"//{nameof(ClientsPage)}");
+
                 }
                 else
                 {

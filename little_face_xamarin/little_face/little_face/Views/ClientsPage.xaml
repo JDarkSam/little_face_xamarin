@@ -4,14 +4,23 @@
              xmlns:viewModels="clr-namespace:little_face.ViewModels"
              x:DataType="viewModels:ClientsViewModel"
              xmlns:utilitiy="clr-namespace:little_face.Utilities"
-             utilitiy:ViewModelLocator.AutoWireViewModel="True"
-             
+             xmlns:models="clr-namespace:little_face.Data.Models"
+             utilitiy:ViewModelLocator.AutoWireViewModel="True"             
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="little_face.Views.ClientsPage">
-
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding AppearingCommand}"/>
+    </ContentPage.Behaviors>
     <ContentPage.Content>
-        <CollectionView ItemsSource="{Binding Clients}">
-            
+        <CollectionView ItemsSource="{Binding Clients}" EmptyView="No Clients to display">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Client">
+                    <StackLayout>
+                        <Label Text="{Binding Name}"/>
+                        <Label Text="{Binding Dna}"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
         </CollectionView>
     </ContentPage.Content>
 
