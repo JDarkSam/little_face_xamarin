@@ -1,4 +1,5 @@
 ﻿using little_face.Data.API;
+using little_face.Resx;
 using little_face.Services;
 using little_face.Views;
 using System;
@@ -110,6 +111,7 @@ namespace little_face.ViewModels
                     ShowMessage = true;            
                     MessageColor = Color.Red;
                     WelcomeMessage = "Credenciales Invalidas!!!";
+                    await Application.Current.MainPage.DisplayAlert(AppResources.LoginPageInvalidLoginTitle,AppResources.LoginPageInvalidLoginMessage,AppResources.OkText);
                 }
                 
             }
