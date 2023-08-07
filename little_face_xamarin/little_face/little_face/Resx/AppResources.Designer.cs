@@ -79,6 +79,15 @@ namespace little_face.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pwd.
+        /// </summary>
+        internal static string LoginPagePasswordText {
+            get {
+                return ResourceManager.GetString("LoginPagePasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User.
         /// </summary>
         internal static string LoginPageUsernameText {
@@ -93,15 +102,6 @@ namespace little_face.Resx {
         internal static string OkText {
             get {
                 return ResourceManager.GetString("OkText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }
