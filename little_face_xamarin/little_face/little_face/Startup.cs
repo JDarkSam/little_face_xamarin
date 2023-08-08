@@ -8,10 +8,11 @@ using Refit;
 using System;
 using System.Linq;
 using Xamarin.Forms.Internals;
+using little_face.Data.API;
 
 namespace little_face
 {
-    internal class Startup
+    public static class Startup
     {
         private const string INTERFACE_PREFIX = "I";
         private const string SERVICES_NAMESPACE = "little_face.Services";
@@ -34,6 +35,10 @@ namespace little_face
             }));
 
             serviceCollection.AddRefitClient<IClientApi>(refitSettings)
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri(Settings.ApiBaseUri))
+                .AddHttpMessageHandler<BaseAddressHandler>();
+
+            serviceCollection.AddRefitClient<IAccountApi>(refitSettings)
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri(Settings.ApiBaseUri))
                 .AddHttpMessageHandler<BaseAddressHandler>();
 

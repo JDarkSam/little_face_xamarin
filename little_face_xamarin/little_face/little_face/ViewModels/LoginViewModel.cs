@@ -2,9 +2,6 @@
 using little_face.Resx;
 using little_face.Services;
 using little_face.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using Xamarin.Forms;
 
@@ -12,6 +9,16 @@ namespace little_face.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
+
+        private readonly IAccountService _accountService;
+
+        public LoginViewModel(IAccountService accountService)
+        {
+            _accountService = accountService;
+            LoginCommand = new Command(OnLoginClicked);
+        }
+
+
         private string _username;
         private string _password;
         private bool _showMessage;
@@ -88,35 +95,24 @@ namespace little_face.ViewModels
 
         public Command LoginCommand { get; }
 
-        
-        public LoginViewModel()
-        {           
-            LoginCommand = new Command(OnLoginClicked);
-        }
+   
 
         private async void OnLoginClicked(object obj)
         {
-            if (ValidateFields())
+            bool a = await _accountService.LoginAsync(Username, Password);
+            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
+            if (ValidateFields() && await _accountService.LoginAsync(Username, Password))
             {
-                if (Username == "sam" && Password == "pepito1234")
-                {
-                    WelcomeMessage  = "Inicio de sesión exitoso ¡Bienvenido! :" + Username;
-                    MessageColor = Color.Green;
-                    Thread.Sleep(2000);             
-                    await Shell.Current.GoToAsync($"//{nameof(ClientsPage)}");
-
-                }
-                else
-                {
-                    ShowMessage = true;            
-                    MessageColor = Color.Red;
-                    WelcomeMessage = "Credenciales Invalidas!!!";
-                    await Application.Current.MainPage.DisplayAlert(AppResources.LoginPageInvalidLoginTitle,AppResources.LoginPageInvalidLoginMessage,AppResources.OkText);
-                }
-                
+                await Shell.Current.GoToAsync($"//{nameof(ClientsPage)}");
             }
-
-        }       
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                        AppResources.LoginPageInvalidLoginTitle,
+                        AppResources.LoginPageInvalidLoginMessage,
+                        AppResources.OkText);
+            }
+        }
         private bool ValidateFields()
         {
             if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
