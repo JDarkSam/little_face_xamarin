@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "little_face.Android", "litt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "little_face.iOS", "little_face\little_face.iOS\little_face.iOS.csproj", "{B056BB20-01BD-4FDB-8DA6-2753C89B597A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "little_face", "little_face\little_face\little_face.csproj", "{CB6913E7-6624-43D2-834D-75C1A491DF8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "little_face", "little_face\little_face\little_face.csproj", "{CB6913E7-6624-43D2-834D-75C1A491DF8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
