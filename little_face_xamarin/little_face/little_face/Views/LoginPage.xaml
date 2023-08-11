@@ -18,9 +18,10 @@
     </ContentPage.BindingContext>-->
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center" >
-            <Image Source="{local:ImageResource little_face.Resources.Images.face.jpg}" WidthRequest="200" HeightRequest="200" />            
-            <Entry Text="{Binding Username}" Placeholder="{Static resx:AppResources.LoginPageUsernameText}" />
-            <Entry Text="{Binding Password}" Placeholder="{Static resx:AppResources.LoginPagePasswordText}" IsPassword="True" />
+            <Image Source="{local:ImageResource little_face.Resources.Images.wink.png}" WidthRequest="80" HeightRequest="80" />    
+            <Image Source="{local:ImageResource little_face.Resources.Images.logo.png}" WidthRequest="200" HeightRequest="200" />
+            <Entry Text="{Binding Username}" Placeholder="{Static resx:AppResources.LoginPageUsernameText}"  TextColor="DarkBlue" />
+            <Entry Text="{Binding Password}" Placeholder="{Static resx:AppResources.LoginPagePasswordText}" IsPassword="True"  TextColor="DarkBlue"/>
             <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
             <Label Text="{Binding WelcomeMessage}" FontSize="Subtitle"  TextColor="{Binding MessageColor}"  HorizontalOptions="Center" Margin="0,30,0,0" IsVisible="{Binding ShowMessage}"/>
         </StackLayout>

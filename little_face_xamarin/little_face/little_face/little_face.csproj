@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Images\face.jpg" />
+    <None Remove="Resources\Images\face.png" />
+    <None Remove="Resources\Images\logo.png" />
+    <None Remove="Resources\Images\wink.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Images\face.jpg" />
+    <EmbeddedResource Include="Resources\Images\face.png" />
+    <EmbeddedResource Include="Resources\Images\logo.png" />
+    <EmbeddedResource Include="Resources\Images\wink.png" />
   </ItemGroup>
 
   <ItemGroup>

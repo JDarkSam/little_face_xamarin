@@ -124,10 +124,10 @@
     <value>Unable to login</value>
   </data>
   <data name="LoginPagePasswordText" xml:space="preserve">
-    <value>Pwd</value>
+    <value>Password</value>
   </data>
   <data name="LoginPageUsernameText" xml:space="preserve">
-    <value>User</value>
+    <value>Usuario</value>
   </data>
   <data name="OkText" xml:space="preserve">
     <value>Ok</value>

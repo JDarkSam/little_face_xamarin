@@ -79,7 +79,7 @@ namespace little_face.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pwd.
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string LoginPagePasswordText {
             get {
@@ -88,7 +88,7 @@ namespace little_face.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User.
+        ///   Looks up a localized string similar to Usuario.
         /// </summary>
         internal static string LoginPageUsernameText {
             get {
