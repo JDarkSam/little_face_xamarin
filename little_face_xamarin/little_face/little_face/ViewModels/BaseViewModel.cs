@@ -11,12 +11,29 @@ namespace little_face.ViewModels
     public class BaseViewModel : ObservableObject
     {
 
-        bool isBusy = false;
+        bool isBusy;
         public bool IsBusy
         {
             get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
+            set
+            {
+                if (SetProperty(ref isBusy, value))
+                    IsNotBusy = !isBusy;
+            }
         }
+
+
+        bool isNotBusy = true;
+        public bool IsNotBusy
+        {
+            get => isNotBusy;
+            set
+            {
+                if (SetProperty(ref isNotBusy, value))
+                    IsBusy = !isNotBusy;
+            }
+        }
+
 
         string title = string.Empty;
         public string Title
@@ -25,29 +42,6 @@ namespace little_face.ViewModels
             set { SetProperty(ref title, value); }
         }
 
-        protected bool SetProperty<T>(ref T backingStore, T value,
-            [CallerMemberName] string propertyName = "",
-            Action onChanged = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(backingStore, value))
-                return false;
-
-            backingStore = value;
-            onChanged?.Invoke();
-            OnPropertyChanged(propertyName);
-            return true;
-        }
-
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            var changed = PropertyChanged;
-            if (changed == null)
-                return;
-
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
+       
     }
 }
