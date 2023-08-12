@@ -10,7 +10,8 @@ namespace little_face
     {
         public AppShell()
         {
-            InitializeComponent();           
+            InitializeComponent();
+            Routing.RegisterRoute(nameof(ClientPage), typeof(ClientPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using little_face.Data.Models;
 using little_face.Services;
+using little_face.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Forms;
 
 namespace little_face.ViewModels
 {
@@ -17,6 +19,8 @@ namespace little_face.ViewModels
         {
             _clientService = clientService;
             AppearingCommand = new AsyncCommand(async () => await OnAppearingAsync());
+            ClientTappedCommand = new AsyncCommand<Client>(OnClientTapped);
+
 
         }
 
@@ -24,6 +28,8 @@ namespace little_face.ViewModels
         public ObservableRangeCollection<Client> Clients { get; set; } = new ObservableRangeCollection<Client>();
 
         public ICommand AppearingCommand { get; set; }
+        public ICommand ClientTappedCommand { get; set; }
+
         #endregion
 
         private async Task OnAppearingAsync()
@@ -52,6 +58,15 @@ namespace little_face.ViewModels
             }
         }
 
+        private Task OnClientTapped(Client client)
+        {
+            if (client == null)
+            {
+                return Task.CompletedTask;
+            }
+
+            return Shell.Current.GoToAsync($"{nameof(ClientPage)}?{nameof(ClientViewModel.ClientId)}={client.Id}");
+        }
 
 
     }
