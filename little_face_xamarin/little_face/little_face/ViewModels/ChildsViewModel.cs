@@ -3,7 +3,6 @@ using little_face.Services;
 using little_face.Views;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -11,25 +10,23 @@ using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace little_face.ViewModels
-{
-    public class ClientsViewModel : BaseViewModel
+{    
+    public class ChildsViewModel : BaseViewModel
     {
-        private readonly IClientService _clientService;
-        public ClientsViewModel(IClientService clientService)
-        {
-            _clientService = clientService;
+        private readonly IChildService _childService;
+        public ChildsViewModel(IChildService childService)
+        { 
+            _childService = childService;
             AppearingCommand = new AsyncCommand(async () => await OnAppearingAsync());
-            ClientTappedCommand = new AsyncCommand<Client>(OnClientTapped);
         }
 
         #region Properties
-        public ObservableRangeCollection<Client> Clients { get; set; } = new ObservableRangeCollection<Client>();
+        public ObservableRangeCollection<Child> Childs { get; set; } = new ObservableRangeCollection<Child>();
 
         public ICommand AppearingCommand { get; set; }
-        public ICommand ClientTappedCommand { get; set; }
+        public ICommand ChildTappedCommand { get; set; }
 
         #endregion
-
         private async Task OnAppearingAsync()
         {
             await LoadData();
@@ -40,10 +37,10 @@ namespace little_face.ViewModels
             try
             {
                 IsBusy = true;
-                var clients = await _clientService.GetClientsAsync();
-                if (clients != null)
+                var childs = await _childService.GetChildsAsync();
+                if (childs != null)
                 {
-                    Clients.ReplaceRange(clients);
+                    Childs.ReplaceRange(childs);
                 }
             }
             catch (Exception ex)
@@ -56,16 +53,15 @@ namespace little_face.ViewModels
             }
         }
 
-        private Task OnClientTapped(Client client)
+        private Task OnClientTapped(Child child)
         {
-            if (client == null)
+            if (child == null)
             {
                 return Task.CompletedTask;
             }
 
-            return Shell.Current.GoToAsync($"{nameof(ClientPage)}?{nameof(ClientViewModel.ClientId)}={client.Id}");
+            return Shell.Current.GoToAsync($"{nameof(ChildPage)}"); 
         }
-
 
     }
 }
