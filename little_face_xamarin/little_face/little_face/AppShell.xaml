@@ -103,11 +103,11 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Goals" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+        <ShellContent Route="GoalsPage" ContentTemplate="{DataTemplate local:GoalsPage}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Rewards" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+        <ShellContent Route="RewardsPage" ContentTemplate="{DataTemplate local:RewardsPage}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Dashboard" Icon="icon_feed.png">
