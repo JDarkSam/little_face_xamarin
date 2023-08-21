@@ -8,6 +8,7 @@ namespace little_face.Services
     {
         string UserName { get; set; }
         string UserToken { get; set; }
+        string UserId { get; set; }
         void Clear();
 
     }

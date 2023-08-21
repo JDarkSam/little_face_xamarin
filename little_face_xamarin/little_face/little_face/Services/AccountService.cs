@@ -38,6 +38,7 @@ namespace little_face.Services
                     {
                         _appUserSettingService.UserName = user.UserName;
                         _appUserSettingService.UserToken = user.Token;
+                        _appUserSettingService.UserId = user.Id.ToString();
                         return true;
                     }
                 }

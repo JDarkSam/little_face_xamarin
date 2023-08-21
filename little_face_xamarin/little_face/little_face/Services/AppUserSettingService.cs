@@ -9,6 +9,7 @@ namespace little_face.Services
     {
         private const string USERNAME_KEY = "UserNameKey";
         private const string TOKEN_KEY = "TokenKey";
+        private const string USERID_KEY = "";
 
         public string UserName
         {
@@ -33,6 +34,20 @@ namespace little_face.Services
                 Preferences.Set(TOKEN_KEY, value);
             }
         }
+
+        public string UserId
+        {
+            get
+            {
+                return Preferences.Get(USERID_KEY, "0");
+            }
+            set
+            {
+                Preferences.Set(USERID_KEY, value);
+            }
+        }
+
+
 
 
         public void Clear()

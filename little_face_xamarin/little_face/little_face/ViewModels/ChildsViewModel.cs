@@ -14,9 +14,11 @@ namespace little_face.ViewModels
     public class ChildsViewModel : BaseViewModel
     {
         private readonly IChildService _childService;
-        public ChildsViewModel(IChildService childService)
+        private readonly IAppUserSettingService _appUserSettingService;
+        public ChildsViewModel(IChildService childService, IAppUserSettingService appUserSettingService)
         { 
             _childService = childService;
+            _appUserSettingService = appUserSettingService;
             AppearingCommand = new AsyncCommand(async () => await OnAppearingAsync());
         }
 
@@ -37,7 +39,8 @@ namespace little_face.ViewModels
             try
             {
                 IsBusy = true;
-                var childs = await _childService.GetChildsAsync(1);
+                Int16 userId = Int16.Parse(_appUserSettingService.UserId);
+                var childs = await _childService.GetChildsAsync(userId);
                 if (childs != null)
                 {
                     Childs.ReplaceRange(childs);
