@@ -42,6 +42,10 @@ namespace little_face
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri(Settings.ApiBaseUri))
                 .AddHttpMessageHandler<BaseAddressHandler>();
 
+            serviceCollection.AddRefitClient<IGoalApi>(refitSettings)
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri(Settings.ApiBaseUri))
+                .AddHttpMessageHandler<BaseAddressHandler>();
+
             serviceCollection.AddRefitClient<IAccountApi>(refitSettings)
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri(Settings.ApiBaseUri))
                 .AddHttpMessageHandler<BaseAddressHandler>();
