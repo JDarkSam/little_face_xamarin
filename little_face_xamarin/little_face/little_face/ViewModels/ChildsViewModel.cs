@@ -37,7 +37,7 @@ namespace little_face.ViewModels
             try
             {
                 IsBusy = true;
-                var childs = await _childService.GetChildsAsync();
+                var childs = await _childService.GetChildsAsync(1);
                 if (childs != null)
                 {
                     Childs.ReplaceRange(childs);

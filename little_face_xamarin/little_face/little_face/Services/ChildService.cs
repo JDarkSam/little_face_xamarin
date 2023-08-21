@@ -15,13 +15,13 @@ namespace little_face.Services
             _childApi = childApi;
         }
 
-        public async Task<List<Child>> GetChildsAsync()
+        public async Task<List<Child>> GetChildsAsync(long userId)
         {
             var childs = new List<Child>();
 
             try
             {
-                var response = await _childApi.GetChildsAsync();
+                var response = await _childApi.GetChildsAsync(userId);
                 childs = response.ToList();
                 return childs;
             }

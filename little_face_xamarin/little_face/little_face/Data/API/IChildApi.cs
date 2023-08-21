@@ -11,7 +11,7 @@ namespace little_face.Data.API
     public interface IChildApi
     {
         [Get("/Childs")]
-        Task<IEnumerable<Child>> GetChildsAsync();
-        
+        Task<IEnumerable<Child>> GetChildsAsync(long userId);
+
     }
 }
