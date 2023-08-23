@@ -10,5 +10,6 @@ namespace little_face.Services
     public interface IChildService
     {
         Task<List<Child>> GetChildsAsync(long userId);
+        Task<Child> GetChild(long Id);
     }
 }

@@ -13,6 +13,7 @@ namespace little_face
             InitializeComponent();
             Routing.RegisterRoute(nameof(ClientPage), typeof(ClientPage));
             Routing.RegisterRoute(nameof(ChildPage), typeof(ChildPage));
+            Routing.RegisterRoute(nameof(GoalPage), typeof(GoalPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

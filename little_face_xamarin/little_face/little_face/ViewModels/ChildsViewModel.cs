@@ -66,8 +66,7 @@ namespace little_face.ViewModels
                 return Task.CompletedTask;
             }
 
-            //return Shell.Current.GoToAsync($"{nameof(ChildPage)}");
-            return Shell.Current.GoToAsync($"{nameof(ChildPage)}?{nameof(ChildViewModel.ChildId)}={1}");
+            return Shell.Current.GoToAsync($"{nameof(ChildPage)}?{nameof(ChildViewModel.ChildId)}={child.Id}&accion={7}");
         }
 
     }

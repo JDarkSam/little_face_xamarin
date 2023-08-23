@@ -13,5 +13,7 @@ namespace little_face.Data.API
         [Get("/Childs")]
         Task<IEnumerable<Child>> GetChildsAsync(long userId);
 
+        [Get("/Childs/{id}")]
+        Task<Child> GetChild(long id);
     }
 }

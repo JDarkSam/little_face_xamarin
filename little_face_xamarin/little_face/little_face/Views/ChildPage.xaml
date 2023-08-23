@@ -12,10 +12,23 @@
         <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding AppearingCommand}"/>
     </ContentPage.Behaviors>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid ColumnDefinitions="*,*"
+                    RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                <Label Grid.Column="0" Grid.Row="0" Text="Names:" />
+                <Entry Grid.Column="1" Grid.Row="0" Placeholder="Names" Text="{Binding Child.Names}"/>
+
+                <Label Grid.Column="0" Grid.Row="1" Text="Surnames:" />
+                <Entry Grid.Column="1" Grid.Row="1" Placeholder="Surnames" Text="{Binding Child.Surnames}" />
+
+                <Label Grid.Column="0" Grid.Row="2" Text="Age:" />
+                <Entry Grid.Column="1" Grid.Row="2" Placeholder="Age" Text="{Binding Child.Age}"/>
+
+                <Label Grid.Column="0" Grid.Row="3" Text="Alias:" />
+                <Entry Grid.Column="1" Grid.Row="3" Placeholder="Alias" Text="{Binding Child.Alias}"/>
+            </Grid>
+
+            <Button Text="Register" Padding="20" HorizontalOptions="FillAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
