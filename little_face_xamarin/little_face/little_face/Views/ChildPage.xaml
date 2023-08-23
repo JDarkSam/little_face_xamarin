@@ -1,7 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:utility="clr-namespace:little_face.Utilities"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:viewModels="clr-namespace:little_face.ViewModels"
+             utility:ViewModelLocator.AutoWireViewModel="True"
+             x:DataType="viewModels:ChildViewModel"
+             Title="Child"
              x:Class="little_face.Views.ChildPage">
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding AppearingCommand}"/>
+    </ContentPage.Behaviors>
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"

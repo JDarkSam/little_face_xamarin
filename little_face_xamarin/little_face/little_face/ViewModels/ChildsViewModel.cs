@@ -15,13 +15,16 @@ namespace little_face.ViewModels
     {
         private readonly IChildService _childService;
         private readonly IAppUserSettingService _appUserSettingService;
+       
         public ChildsViewModel(IChildService childService, IAppUserSettingService appUserSettingService)
         { 
             _childService = childService;
             _appUserSettingService = appUserSettingService;
             AppearingCommand = new AsyncCommand(async () => await OnAppearingAsync());
+            ChildTappedCommand = new AsyncCommand<Child>(OnChildTapped);
         }
 
+  
         #region Properties
         public ObservableRangeCollection<Child> Childs { get; set; } = new ObservableRangeCollection<Child>();
 
@@ -56,14 +59,15 @@ namespace little_face.ViewModels
             }
         }
 
-        private Task OnClientTapped(Child child)
+        private Task OnChildTapped(Child child)
         {
             if (child == null)
             {
                 return Task.CompletedTask;
             }
 
-            return Shell.Current.GoToAsync($"{nameof(ChildPage)}"); 
+            //return Shell.Current.GoToAsync($"{nameof(ChildPage)}");
+            return Shell.Current.GoToAsync($"{nameof(ChildPage)}?{nameof(ChildViewModel.ChildId)}={1}");
         }
 
     }
