@@ -55,6 +55,13 @@
                         </Grid>
                     </CollectionView.Header>
                 </CollectionView>
+                <Button
+                    WidthRequest      ="80"
+                    HeightRequest     ="80"
+                    CornerRadius      ="40"
+                    VerticalOptions   ="Center"
+                    HorizontalOptions ="Center"
+                    BackgroundColor   ="#f5be0b" Text="+" FontSize="60" Command="{Binding AddChildCommand}"/>
             </StackLayout>
             <!--Loading Indicator-->
             <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center"/>

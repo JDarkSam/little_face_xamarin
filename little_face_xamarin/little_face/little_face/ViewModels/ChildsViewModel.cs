@@ -1,4 +1,5 @@
 ﻿using little_face.Data.Models;
+using little_face.Resx;
 using little_face.Services;
 using little_face.Views;
 using System;
@@ -22,6 +23,7 @@ namespace little_face.ViewModels
             _appUserSettingService = appUserSettingService;
             AppearingCommand = new AsyncCommand(async () => await OnAppearingAsync());
             ChildTappedCommand = new AsyncCommand<Child>(OnChildTapped);
+            AddChildCommand = new Command(OnLoginClicked);
         }
 
   
@@ -32,6 +34,13 @@ namespace little_face.ViewModels
         public ICommand ChildTappedCommand { get; set; }
 
         #endregion
+
+        public Command AddChildCommand { get; }
+
+        private async void OnLoginClicked(object obj)
+        {   
+            await Shell.Current.GoToAsync($"{nameof(ChildPage)}");  
+        }
         private async Task OnAppearingAsync()
         {
             await LoadData();
