@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 
 namespace little_face.ViewModels
@@ -39,7 +40,8 @@ namespace little_face.ViewModels
 
         private async void OnLoginClicked(object obj)
         {   
-            await Shell.Current.GoToAsync($"{nameof(ChildPage)}");  
+            //await Shell.Current.GoToAsync($"{nameof(ChildPage)}");
+            await Shell.Current.GoToAsync($"{nameof(ChildPage)}?{nameof(ChildViewModel.ChildId)}={0}&accion={0}");
         }
         private async Task OnAppearingAsync()
         {
@@ -75,7 +77,7 @@ namespace little_face.ViewModels
                 return Task.CompletedTask;
             }
 
-            return Shell.Current.GoToAsync($"{nameof(ChildPage)}?{nameof(ChildViewModel.ChildId)}={child.Id}&accion={7}");
+            return Shell.Current.GoToAsync($"{nameof(ChildPage)}?{nameof(ChildViewModel.ChildId)}={child.Id}&accion={1}");
         }
 
     }

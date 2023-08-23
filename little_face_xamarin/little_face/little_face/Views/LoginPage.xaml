@@ -12,7 +12,7 @@
              mc:Ignorable="d"
              x:Class="little_face.Views.LoginPage"
              Shell.NavBarIsVisible="False"
-             Background="#FFFA05">
+             Background="#f5be0b">
     <!--<ContentPage.BindingContext>
         <viewModels:LoginViewModel />
     </ContentPage.BindingContext>-->

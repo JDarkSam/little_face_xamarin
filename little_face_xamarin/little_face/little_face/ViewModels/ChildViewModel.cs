@@ -37,19 +37,18 @@ namespace little_face.ViewModels
 
         private async Task LoadChild()
         {
-            //if (ChildId < 0)
-            //{
-            //    return;
-            //}
-
+      
             IsBusy = true;
             try
-            {                
-                if (Accion == 7)
+            {
+                if (Accion == 1)
                 {
+                    //update
                     Child = await _childService.GetChild(ChildId);
-                    string oper;
-                    oper = "Insert";
+
+                }
+                else { 
+                    //insert
                 }
             }
             catch (Exception ex)
