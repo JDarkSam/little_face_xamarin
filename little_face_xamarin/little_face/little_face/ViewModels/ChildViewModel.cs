@@ -16,6 +16,7 @@ namespace little_face.ViewModels
     public class ChildViewModel : BaseViewModel
     {
         private readonly IChildService _childService;
+        private readonly IAppUserSettingService _appUserSettingService;
         private long _childId;
         private long _accion;
         private Child _child;
@@ -98,11 +99,12 @@ namespace little_face.ViewModels
 
 
 
-        public ChildViewModel(IChildService childService) 
+        public ChildViewModel(IChildService childService, IAppUserSettingService appUserSettingService) 
         { 
             _childService = childService;
             AppearingCommand = new AsyncCommand(async () => await Appearing());
             AddChildCommand = new AsyncCommand(async () => await AddChild());
+            _appUserSettingService = appUserSettingService;
         }
 
         public Child Child { get => _child; set => SetProperty(ref _child, value); }
@@ -134,7 +136,7 @@ namespace little_face.ViewModels
                 ChildDto.Surnames = Surnames;
                 ChildDto.Age = Age;
                 ChildDto.Alias = Alias;
-                ChildDto.UserId = 1;
+                ChildDto.UserId = Int16.Parse(_appUserSettingService.UserId);
 
                 Child = await _childService.AddChild(ChildDto);
             }
