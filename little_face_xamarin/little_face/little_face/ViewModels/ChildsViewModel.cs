@@ -39,8 +39,7 @@ namespace little_face.ViewModels
         public Command AddChildCommand { get; }
 
         private async void OnLoginClicked(object obj)
-        {   
-            //await Shell.Current.GoToAsync($"{nameof(ChildPage)}");
+        {               
             await Shell.Current.GoToAsync($"{nameof(ChildPage)}?{nameof(ChildViewModel.ChildId)}={0}&accion={0}");
         }
         private async Task OnAppearingAsync()

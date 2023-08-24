@@ -160,6 +160,11 @@ namespace little_face.ViewModels
                 {
                     //update
                     Child = await _childService.GetChild(ChildId);
+                    Names = Child.Names;
+                    Surnames = Child.Surnames;
+                    Age = Child.Age;
+                    Alias = Child.Alias;
+                    UserId = Child.UserId.ToString();
 
                 }
                 else { 
