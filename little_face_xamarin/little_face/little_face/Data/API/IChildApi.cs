@@ -15,5 +15,9 @@ namespace little_face.Data.API
 
         [Get("/Childs/{id}")]
         Task<Child> GetChild(long id);
+
+        [Post("/Childs")]
+        Task<Child> PostChild(ChildDto child);
+        
     }
 }

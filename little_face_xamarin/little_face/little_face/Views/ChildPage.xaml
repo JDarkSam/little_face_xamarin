@@ -16,19 +16,19 @@
             <Grid ColumnDefinitions="*,*"
                     RowDefinitions="Auto,Auto,Auto,Auto,Auto">
                 <Label Grid.Column="0" Grid.Row="0" Text="Names:" />
-                <Entry Grid.Column="1" Grid.Row="0" Placeholder="Names" Text="{Binding Child.Names}"/>
+                <Entry Grid.Column="1" Grid.Row="0" Placeholder="Names" Text="{Binding Names}"/>
 
                 <Label Grid.Column="0" Grid.Row="1" Text="Surnames:" />
-                <Entry Grid.Column="1" Grid.Row="1" Placeholder="Surnames" Text="{Binding Child.Surnames}" />
+                <Entry Grid.Column="1" Grid.Row="1" Placeholder="Surnames" Text="{Binding Surnames}" />
 
                 <Label Grid.Column="0" Grid.Row="2" Text="Age:" />
-                <Entry Grid.Column="1" Grid.Row="2" Placeholder="Age" Text="{Binding Child.Age}"/>
+                <Entry Grid.Column="1" Grid.Row="2" Placeholder="Age" Text="{Binding Age}"/>
 
                 <Label Grid.Column="0" Grid.Row="3" Text="Alias:" />
-                <Entry Grid.Column="1" Grid.Row="3" Placeholder="Alias" Text="{Binding Child.Alias}"/>
+                <Entry Grid.Column="1" Grid.Row="3" Placeholder="Alias" Text="{Binding Alias}"/>
             </Grid>
 
-            <Button Text="Register" Padding="20" HorizontalOptions="FillAndExpand"/>
+            <Button Text="Register" Padding="20" HorizontalOptions="FillAndExpand" Command="{Binding AddChildCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

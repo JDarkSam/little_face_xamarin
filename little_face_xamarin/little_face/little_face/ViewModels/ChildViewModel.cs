@@ -19,20 +19,133 @@ namespace little_face.ViewModels
         private long _childId;
         private long _accion;
         private Child _child;
+        private ChildDto _childDto;
+
+        private string _names;
+        private string _surnames;
+        private int _age;
+        private string _alias;
+        private string _userId;
+
+
+        public string Names
+        {
+
+            get => _names;
+            set
+            {
+                if (_names != value)
+                {
+                    _names = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public string Surnames
+        {
+
+            get => _surnames;
+            set
+            {
+                if (_surnames != value)
+                {
+                    _surnames = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public int Age
+        {
+
+            get => _age;
+            set
+            {
+                if (_age != value)
+                {
+                    _age = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string Alias
+        {
+
+            get => _alias;
+            set
+            {
+                if (_alias != value)
+                {
+                    _alias = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public string UserId
+        {
+
+            get => _userId;
+            set
+            {
+                if (_userId != value)
+                {
+                    _userId = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+
         public ChildViewModel(IChildService childService) 
         { 
             _childService = childService;
             AppearingCommand = new AsyncCommand(async () => await Appearing());
+            AddChildCommand = new AsyncCommand(async () => await AddChild());
         }
 
         public Child Child { get => _child; set => SetProperty(ref _child, value); }
+        public ChildDto ChildDto { get => _childDto; set => SetProperty(ref _childDto, value); }
         public long ChildId { get => _childId; set => SetProperty(ref _childId, value); }
         public long Accion { get => _accion; set => SetProperty(ref _accion, value); } //0=Insert 1=Update
         public ICommand AppearingCommand { get; set; }
 
+        public ICommand AddChildCommand { get; set; }
+
         private async Task Appearing()
         {
             await LoadChild();
+        }
+
+        private async Task AddChild()
+        {
+            await AddChildMethod();
+        }
+
+        private async Task AddChildMethod()
+        {
+            IsBusy = true;
+            try
+            {
+                ChildDto = new ChildDto();
+
+                ChildDto.Names = Names;
+                ChildDto.Surnames = Surnames;
+                ChildDto.Age = Age;
+                ChildDto.Alias = Alias;
+                ChildDto.UserId = 1;
+
+                Child = await _childService.AddChild(ChildDto);
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         private async Task LoadChild()

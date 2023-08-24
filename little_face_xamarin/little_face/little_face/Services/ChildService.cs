@@ -48,5 +48,21 @@ namespace little_face.Services
             }
             return child;
         }
+
+        public async Task<Child> AddChild(ChildDto childDto)
+        {
+            var child = new Child();
+
+            try
+            {
+                child = await _childApi.PostChild(childDto);
+                return child;
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+            }
+            return child;
+        }
     }
 }
