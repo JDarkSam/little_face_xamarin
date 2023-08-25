@@ -55,7 +55,7 @@ namespace little_face.Services
 
             try
             {
-                child = await _childApi.PostChild(childDto);
+                child = await _childApi.AddChild(childDto);
                 return child;
             }
             catch (Exception ex)
@@ -64,5 +64,22 @@ namespace little_face.Services
             }
             return child;
         }
+
+        public async Task<Child> UpdateChild(long id, ChildDto childDto)
+        {
+            var child = new Child();
+
+            try
+            {
+                child = await _childApi.UpdateChild(id, childDto);
+                return child;
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+            }
+            return child;
+        }
+
     }
 }

@@ -12,5 +12,6 @@ namespace little_face.Services
         Task<List<Child>> GetChildsAsync(long userId);
         Task<Child> GetChild(long Id);
         Task<Child> AddChild(ChildDto childDto);
+        Task<Child> UpdateChild(long id, ChildDto childDto);
     }
 }

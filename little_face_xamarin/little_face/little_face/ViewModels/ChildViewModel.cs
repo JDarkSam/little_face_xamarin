@@ -27,6 +27,7 @@ namespace little_face.ViewModels
         private int _age;
         private string _alias;
         private string _userId;
+        private long _id;
 
 
         public string Names
@@ -97,13 +98,27 @@ namespace little_face.ViewModels
             }
         }
 
+        public long Id
+        {
+
+            get => _id;
+            set
+            {
+                if (_id != value)
+                {
+                    _id = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
 
 
         public ChildViewModel(IChildService childService, IAppUserSettingService appUserSettingService) 
         { 
             _childService = childService;
             AppearingCommand = new AsyncCommand(async () => await Appearing());
-            AddChildCommand = new AsyncCommand(async () => await AddChild());
+            AddUpdatechildCommand = new AsyncCommand(async () => await AddUpdatechild());
             _appUserSettingService = appUserSettingService;
         }
 
@@ -113,25 +128,35 @@ namespace little_face.ViewModels
         public long Accion { get => _accion; set => SetProperty(ref _accion, value); } //0=Insert 1=Update
         public ICommand AppearingCommand { get; set; }
 
-        public ICommand AddChildCommand { get; set; }
+        public ICommand AddUpdatechildCommand { get; set; }
 
         private async Task Appearing()
         {
             await LoadChild();
         }
 
-        private async Task AddChild()
+        private async Task AddUpdatechild()
         {
-            await AddChildMethod();
+            switch (Accion) 
+            {
+                case 0: await AddChild(); 
+                    break;
+                case 1: await UpdateChild();
+                    break;
+                default:
+                    break;
+            }
+
+            await AddChild();
         }
 
-        private async Task AddChildMethod()
+        private async Task AddChild()
         {
             IsBusy = true;
             try
             {
                 ChildDto = new ChildDto();
-
+                                
                 ChildDto.Names = Names;
                 ChildDto.Surnames = Surnames;
                 ChildDto.Age = Age;
@@ -150,26 +175,45 @@ namespace little_face.ViewModels
             }
         }
 
+        private async Task UpdateChild()
+        {
+            IsBusy = true;
+            try
+            {
+                ChildDto = new ChildDto();
+
+                ChildDto.Id = Id;
+                ChildDto.Names = Names;
+                ChildDto.Surnames = Surnames;
+                ChildDto.Age = Age;
+                ChildDto.Alias = Alias;
+                ChildDto.UserId = Int16.Parse(_appUserSettingService.UserId);
+
+                Child = await _childService.UpdateChild(Id,ChildDto);
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
         private async Task LoadChild()
         {
       
             IsBusy = true;
             try
-            {
-                if (Accion == 1)
-                {
-                    //update
-                    Child = await _childService.GetChild(ChildId);
-                    Names = Child.Names;
-                    Surnames = Child.Surnames;
-                    Age = Child.Age;
-                    Alias = Child.Alias;
-                    UserId = Child.UserId.ToString();
-
-                }
-                else { 
-                    //insert
-                }
+            {                                
+                Child = await _childService.GetChild(ChildId);
+                Id = Child.Id;
+                Names = Child.Names;
+                Surnames = Child.Surnames;
+                Age = Child.Age;
+                Alias = Child.Alias;
+                UserId = Child.UserId.ToString();               
             }
             catch (Exception ex)
             {
