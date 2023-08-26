@@ -49,23 +49,36 @@ namespace little_face.ViewModels
                     GoalChildDto.ReplaceRange(goalsChilds);
                 }
 
-                CalendarInlineEvent event1 = new CalendarInlineEvent();
-                event1.StartTime = new DateTime(2023, 8, 20, 5, 0, 0);
-                event1.EndTime = new DateTime(2023, 8, 25, 7, 0, 0);
-                event1.Subject = "Carita Feliz ☺";
-                event1.Color = Color.FromHex("#f5be0b");//Color.Yellow;
-                event1.IsAllDay = true;
+             
+                foreach (GoalChildDto item in GoalChildDto)
+                {
+                    CalendarInlineEvent eventDay = new CalendarInlineEvent();
+                    eventDay.StartTime = item.DateGoal;
+                    eventDay.EndTime = item.DateGoal;
 
-                CalendarInlineEvent event2 = new CalendarInlineEvent();
-                event2.StartTime = new DateTime(2023, 8, 20, 10, 0, 0);
-                event2.EndTime = new DateTime(2023, 8, 20, 12, 0, 0);
-                event2.Subject = "Carita Triste ☹";
-                event2.Color = Color.Red;
-                event2.IsAllDay = true;
+                    switch (item.Face)  //happy 1, sad 2, nothing 0
+                    {
+                        case 1:
+                            eventDay.Subject = item.Taskname + " 😀";
+                            eventDay.Color = Color.FromHex("#f5be0b");
+                            break;
+                        case 2:
+                            eventDay.Subject = item.Taskname + " 😔";
+                            eventDay.Color = Color.Red;
+                            break;
+                        case 0:
+                            eventDay.Subject = item.Taskname;
+                            eventDay.Color = Color.Gray;
+                            break;
+                        default:
+                            break;
+                    }
 
-                CalendarInlineEvents.Add(event1);
-                CalendarInlineEvents.Add(event2);
+                    eventDay.IsAllDay = true;
 
+                    CalendarInlineEvents.Add(eventDay);                 
+                   
+                }
 
             }
             catch (Exception ex)
