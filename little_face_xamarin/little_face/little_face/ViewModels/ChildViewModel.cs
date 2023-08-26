@@ -1,5 +1,6 @@
 ﻿using little_face.Data.Models;
 using little_face.Data.Models.Dto;
+using little_face.Resx;
 using little_face.Services;
 using System;
 using System.Collections.Generic;
@@ -132,7 +133,10 @@ namespace little_face.ViewModels
 
         private async Task Appearing()
         {
-            await LoadChild();
+            if (Accion == 1) 
+            {
+                await LoadChild();
+            }            
         }
 
         private async Task AddUpdatechild()
@@ -145,9 +149,7 @@ namespace little_face.ViewModels
                     break;
                 default:
                     break;
-            }
-
-            await AddChild();
+            }           
         }
 
         private async Task AddChild()
@@ -164,6 +166,10 @@ namespace little_face.ViewModels
                 ChildDto.UserId = Int16.Parse(_appUserSettingService.UserId);
 
                 Child = await _childService.AddChild(ChildDto);
+                await Application.Current.MainPage.DisplayAlert(
+                        "Child",
+                        "The child was inserted!",
+                        AppResources.OkText);
             }
             catch (Exception ex)
             {
@@ -190,6 +196,10 @@ namespace little_face.ViewModels
                 ChildDto.UserId = Int16.Parse(_appUserSettingService.UserId);
 
                 Child = await _childService.UpdateChild(Id,ChildDto);
+                await Application.Current.MainPage.DisplayAlert(
+                        "Child",
+                        "the child was updated!",                        
+                       AppResources.OkText);
             }
             catch (Exception ex)
             {
