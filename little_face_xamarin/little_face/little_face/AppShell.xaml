@@ -111,7 +111,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Dashboard" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+        <ShellContent Route="DashboardPage" ContentTemplate="{DataTemplate local:DashboardPage}" />
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
