@@ -15,9 +15,11 @@ namespace little_face.ViewModels
     public class ClientsViewModel : BaseViewModel
     {
         private readonly IClientService _clientService;
+        private bool _isRefreshing = false;
         public ClientsViewModel(IClientService clientService)
         {
             _clientService = clientService;
+            RefreshCommand = new AsyncCommand(OnRefresh);
             AppearingCommand = new AsyncCommand(async () => await OnAppearingAsync());
             ClientTappedCommand = new AsyncCommand<Client>(OnClientTapped);
         }
@@ -28,11 +30,17 @@ namespace little_face.ViewModels
         public ICommand AppearingCommand { get; set; }
         public ICommand ClientTappedCommand { get; set; }
 
+        public ICommand RefreshCommand { get; set; }
+
+        public bool IsRefreshing { get => _isRefreshing; set => SetProperty(ref _isRefreshing, value); }
+
+
         #endregion
 
         private async Task OnAppearingAsync()
         {
-            await LoadData();
+            //await LoadData();
+            IsRefreshing = true;
         }
 
         private async Task LoadData()
@@ -66,6 +74,11 @@ namespace little_face.ViewModels
             return Shell.Current.GoToAsync($"{nameof(ClientPage)}?{nameof(ClientViewModel.ClientId)}={client.Id}");
         }
 
+        private async Task OnRefresh()
+        {
+            await LoadData();
+            IsRefreshing = false;
+        }
 
     }
 }

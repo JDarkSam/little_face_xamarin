@@ -6,7 +6,7 @@ namespace little_face
 {
     public static class Settings
     {
-        public const string ApiBaseUri = "http://192.168.10.13:5000/api";
+        public const string ApiBaseUri = "http://192.168.125.27:5000/api";
     }
 
 }

@@ -80,7 +80,7 @@
     <ContentPage.Content>
         <Grid>
             <!--Page Content-->
-            <StackLayout IsVisible="{Binding IsNotBusy}" VerticalOptions="FillAndExpand">
+            <!--<StackLayout IsVisible="{Binding IsNotBusy}" VerticalOptions="FillAndExpand">
                 <CollectionView ItemsSource="{Binding Clients}" SelectionMode="Single"
                         EmptyView="No Clients to display"                 
                         ItemTemplate="{StaticResource ClientTemplateSelector}">
@@ -91,7 +91,17 @@
                         </Grid>
                     </CollectionView.Header>
                     </CollectionView>
-            </StackLayout>
+            </StackLayout>-->
+            <RefreshView 
+            Command="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsRefreshing}" 
+            VerticalOptions="FillAndExpand">
+                <CollectionView ItemsSource="{Binding Clients}"
+                IsVisible="{Binding IsNotBusy}"
+                EmptyView="No Clients to display"                 
+                ItemTemplate="{StaticResource ClientTemplateSelector}"/>
+            </RefreshView>
+
             <!--Loading Indicator-->
             <ActivityIndicator IsRunning="{Binding IsBusy}" VerticalOptions="Center"/>
         </Grid>
