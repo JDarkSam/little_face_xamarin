@@ -11,6 +11,6 @@ namespace little_face.Data.API
     public interface IGoalChildApi
     {
         [Get("/GoalChilds")]
-        Task<IEnumerable<GoalChildDto>> GetGoalsChildsAsync(long userId, long chilId);
+        Task<IEnumerable<GoalChildDto>> GetGoalsChildsAsync(long userId, long childId);
     }
 }

@@ -9,22 +9,28 @@ using little_face.Services;
 using Xamarin.CommunityToolkit.ObjectModel;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using little_face.Data.Models;
+using little_face.Data.Models.Dto;
 
 namespace little_face.ViewModels
 {
     public class DashboardViewModel :BaseViewModel
     {
 
-        private readonly IChildService _childService;
+        private readonly IGoalChildService _goalChildService;
         private readonly IAppUserSettingService _appUserSettingService;
         public CalendarEventCollection CalendarInlineEvents { get; set; } = new CalendarEventCollection();
-        public DashboardViewModel(IGoalChildService childService, IAppUserSettingService appUserSettingService)
+        public DashboardViewModel(IGoalChildService goalChildService, IAppUserSettingService appUserSettingService)
         {
+            _goalChildService = goalChildService;
+            _appUserSettingService = appUserSettingService;
             AppearingCommand = new AsyncCommand(async () => await OnAppearingAsync());
         }
 
+        #region Properties
         public ICommand AppearingCommand { get; set; }
-
+        public ObservableRangeCollection<GoalChildDto> GoalChildDto { get; set; } = new ObservableRangeCollection<GoalChildDto>();
+        #endregion
 
         private async Task OnAppearingAsync()
         {
@@ -32,22 +38,47 @@ namespace little_face.ViewModels
         }
         public async Task AddAppointments() 
         {
-            CalendarInlineEvent event1 = new CalendarInlineEvent();
-            event1.StartTime = new DateTime(2023, 8, 20, 5, 0, 0);
-            event1.EndTime = new DateTime(2023, 8, 25, 7, 0, 0);
-            event1.Subject = "Carita Feliz ☺";
-            event1.Color = Color.FromHex("#f5be0b");//Color.Yellow;
-            event1.IsAllDay = true;
 
-            CalendarInlineEvent event2 = new CalendarInlineEvent();
-            event2.StartTime = new DateTime(2023, 8, 20, 10, 0, 0);
-            event2.EndTime = new DateTime(2023, 8, 20, 12, 0, 0);
-            event2.Subject = "Carita Triste ☹";
-            event2.Color = Color.Red;
-            event2.IsAllDay = true;
+            try
+            {
+                IsBusy = true;
+                Int16 userId = Int16.Parse(_appUserSettingService.UserId);
+                var goalsChilds = await _goalChildService.GetGoalsChildsAsync(userId,1);
+                if (goalsChilds != null)
+                {
+                    GoalChildDto.ReplaceRange(goalsChilds);
+                }
 
-            CalendarInlineEvents.Add(event1);
-            CalendarInlineEvents.Add(event2);
+                CalendarInlineEvent event1 = new CalendarInlineEvent();
+                event1.StartTime = new DateTime(2023, 8, 20, 5, 0, 0);
+                event1.EndTime = new DateTime(2023, 8, 25, 7, 0, 0);
+                event1.Subject = "Carita Feliz ☺";
+                event1.Color = Color.FromHex("#f5be0b");//Color.Yellow;
+                event1.IsAllDay = true;
+
+                CalendarInlineEvent event2 = new CalendarInlineEvent();
+                event2.StartTime = new DateTime(2023, 8, 20, 10, 0, 0);
+                event2.EndTime = new DateTime(2023, 8, 20, 12, 0, 0);
+                event2.Subject = "Carita Triste ☹";
+                event2.Color = Color.Red;
+                event2.IsAllDay = true;
+
+                CalendarInlineEvents.Add(event1);
+                CalendarInlineEvents.Add(event2);
+
+
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+
+           
         }
 
     }
