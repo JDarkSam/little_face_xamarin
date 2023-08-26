@@ -27,8 +27,8 @@
                 <Label Grid.Column="0" Grid.Row="3" Text="Alias:" />
                 <Entry Grid.Column="1" Grid.Row="3" Placeholder="Alias" Text="{Binding Alias}"/>
                 
-                <Label Grid.Column="0" Grid.Row="4" Text="{Binding UserId}" />
-                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Id}" />
+                <Label Grid.Column="0" Grid.Row="4" Text="{Binding UserId}" IsVisible="False" />
+                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Id}" IsVisible="False" />
             </Grid>
 
             <Button Text="Register" Padding="20" HorizontalOptions="FillAndExpand" Command="{Binding AddUpdatechildCommand}" />
